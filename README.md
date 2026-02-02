@@ -1,6 +1,6 @@
 # Ohana Voice (Portfolio Copy)
 
-![Ohana Voice preview](assets/preview.svg)
+![Ohana Voice preview](assets/preview.png)
 
 Offline-first voice ordering MVP for a kitchen POS flow. Speech is processed locally and validated before sending to the kitchen (human-in-the-loop).
 
@@ -25,6 +25,16 @@ unzip -q vosk-model-small-es-0.42.zip
 .venv/bin/python backend/kaldi_server.py
 ```
 Open: http://localhost:8010/?ws=2700
+
+## UI demo (no backend)
+```bash
+cd OHANA_VOICE_PUBLIC/frontend
+python3 -m http.server 8010
+```
+Open: http://localhost:8010/?demo=1
+
+**Expected output (UI sample):**
+![Ohana Voice UI](assets/preview.png)
 
 ## Whisper streaming route (optional)
 ```bash

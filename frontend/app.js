@@ -18,6 +18,7 @@ const wsHost = window.location.hostname || "localhost";
 const wsUrl = `ws://${wsHost}:${wsPort}`;
 const handsfree = params.get("handsfree") !== "0";
 const debugMode = params.get("debug") === "1";
+const demoMode = params.get("demo") === "1";
 const autoListen = handsfree;
 let reconnectTimer = null;
 let pendingStart = false;
@@ -290,6 +291,13 @@ micButton.addEventListener("click", () => {
   updateMicVisibility();
   if (debugPanel && debugMode) {
     debugPanel.style.display = "block";
+  }
+  if (demoMode) {
+    setConnection(true);
+    listenStatus.textContent = "Demo";
+    const first = burgersByKey.values().next().value;
+    showBurger(first, "doble cheeseburger", 0.92);
+    return;
   }
   connect();
 })();
