@@ -1,0 +1,173 @@
+{
+  "Monumental": {
+    "phonetic": [
+      "monumental"
+    ],
+    "asr": []
+  },
+  "Mudita": {
+    "phonetic": [
+      "mudita"
+    ],
+    "asr": []
+  },
+  "Feliz": {
+    "phonetic": [
+      "feliz"
+    ],
+    "asr": [
+      "felis"
+    ]
+  },
+  "Dormilona": {
+    "phonetic": [
+      "dormilona"
+    ],
+    "asr": []
+  },
+  "Sabia": {
+    "phonetic": [
+      "sabia"
+    ],
+    "asr": []
+  },
+  "Grunona": {
+    "phonetic": [
+      "gruñona"
+    ],
+    "asr": [
+      "grunona"
+    ]
+  },
+  "Ohana": {
+    "phonetic": [
+      "ojana"
+    ],
+    "asr": [
+      "ohana",
+      "hoanna",
+      "johanna",
+      "oana",
+      "hojana",
+      "hana",
+      "hanna",
+      "o hana",
+      "oh hana"
+    ]
+  },
+  "Lilo": {
+    "phonetic": [
+      "lilo"
+    ],
+    "asr": [
+      "lilo"
+    ]
+  },
+  "Stitch": {
+    "phonetic": [
+      "stich"
+    ],
+    "asr": [
+      "stitch"
+    ]
+  },
+  "Cobra": {
+    "phonetic": [
+      "cobra"
+    ],
+    "asr": []
+  },
+  "Fiona": {
+    "phonetic": [
+      "fiona"
+    ],
+    "asr": []
+  },
+  "Tartufo": {
+    "phonetic": [
+      "tartufo"
+    ],
+    "asr": []
+  },
+  "Sully": {
+    "phonetic": [
+      "suli"
+    ],
+    "asr": [
+      "sully"
+    ]
+  },
+  "Wazoski": {
+    "phonetic": [
+      "uasoski"
+    ],
+    "asr": [
+      "wasoski",
+      "wazowski",
+      "wazoski",
+      "guasoski",
+      "guazowski",
+      "guazoski",
+      "wachowski",
+      "wasawsky"
+    ]
+  },
+  "Boo": {
+    "phonetic": [
+      "bu"
+    ],
+    "asr": [
+      "boo"
+    ]
+  },
+  "Big Ohana": {
+    "phonetic": [
+      "big ojana",
+      "bigojana"
+    ],
+    "asr": [
+      "big ohana",
+      "bigohana",
+      "bigojar",
+      "big johanna",
+      "bi johanna",
+      "big oana",
+      "bi oana",
+      "bicojana",
+      "big hojana",
+      "bi hojana",
+      "big o",
+      "bigo",
+      "bikohan",
+      "biko han",
+      "bico",
+      "bicoh",
+      "vigojana",
+      "vigohana",
+      "vigo hana",
+      "picojano",
+      "big hana",
+      "big hanna"
+    ]
+  },
+  "Timida": {
+    "phonetic": [
+      "tímida"
+    ],
+    "asr": []
+  },
+  "Mulan": {
+    "phonetic": [
+      "mulán"
+    ],
+    "asr": [
+      "molan"
+    ]
+  },
+  "Vegana": {
+    "phonetic": [
+      "vegana"
+    ],
+    "asr": []
+  }
+}

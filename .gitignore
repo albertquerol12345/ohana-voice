@@ -1,0 +1,11 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+logs/
+audio_samples/
+vosk-model*/
+*.zip
+backend/dtw_templates.npz
+backend/kws_model.pt
+dtw_*

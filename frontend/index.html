@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ohana Kitchen Voice MVP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=mobile2" />
+  </head>
+  <body>
+    <div class="app" id="appRoot">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-name">OHANA</span>
+          <span class="brand-sub">Kitchen Voice</span>
+        </div>
+        <div class="status">
+          <span class="status-pill" id="connectionStatus">Desconectado</span>
+          <span class="status-text" id="listenStatus">Idle</span>
+        </div>
+      </header>
+
+      <main class="board">
+        <section class="detail">
+          <div class="detail-header">
+            <div class="burger-name" id="burgerName">Listo</div>
+            <div class="heard" id="heardText">Esperando voz...</div>
+          </div>
+          <ol class="ingredient-list" id="ingredientList"></ol>
+        </section>
+      </main>
+
+      <button class="mic-button" id="micButton" aria-label="Microfono">
+        <span class="mic-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M12 3a3 3 0 0 1 3 3v5a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3zm6 8a1 1 0 1 1 2 0 8 8 0 0 1-7 7.94V21h3a1 1 0 1 1 0 2H8a1 1 0 1 1 0-2h3v-2.06A8 8 0 0 1 4 11a1 1 0 1 1 2 0 6 6 0 0 0 12 0z"
+            />
+          </svg>
+        </span>
+        <span class="mic-text" id="micText">Escuchar</span>
+      </button>
+
+      <div class="debug-panel" id="debugPanel" style="display: none;">
+        <div class="debug-title">Debug</div>
+        <div class="debug-text" id="debugText"></div>
+      </div>
+    </div>
+
+    <script src="app.js?v=mobile2"></script>
+  </body>
+</html>

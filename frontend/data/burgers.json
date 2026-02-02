@@ -1,0 +1,241 @@
+{
+  "burgers": [
+    {
+      "key": "Big Ohana",
+      "display": "Big Ohana",
+      "menu_name": "La Big Ohana",
+      "price": 12.4,
+      "ingredients": [
+        "Cheddar",
+        "cebolla",
+        "lechuga",
+        "pepinillo",
+        "salsa big ohana"
+      ]
+    },
+    {
+      "key": "Boo",
+      "display": "Boo",
+      "menu_name": "La Boo",
+      "price": 12.4,
+      "ingredients": [
+        "Cheddar",
+        "salsa boloñesa"
+      ]
+    },
+    {
+      "key": "Cobra",
+      "display": "Cobra",
+      "menu_name": "La Cobra",
+      "price": 11.9,
+      "ingredients": [
+        "Ternera",
+        "queso de cabra",
+        "gorgonzola",
+        "cheddar",
+        "salsa 4 quesos"
+      ]
+    },
+    {
+      "key": "Dormilona",
+      "display": "Dormilona",
+      "menu_name": "La Dormilona",
+      "price": 11.4,
+      "ingredients": [
+        "Ternera",
+        "queso de cabra",
+        "cebolla caramelizada",
+        "rúcula"
+      ]
+    },
+    {
+      "key": "Feliz",
+      "display": "Feliz",
+      "menu_name": "La Feliz",
+      "price": 11.3,
+      "ingredients": [
+        "Ternera",
+        "cheddar",
+        "lechuga",
+        "tomate",
+        "cebolla",
+        "pepinillo"
+      ]
+    },
+    {
+      "key": "Fiona",
+      "display": "Fiona",
+      "menu_name": "La Fiona",
+      "price": 11.9,
+      "ingredients": [
+        "Ternera",
+        "queso semi curado",
+        "sobrasada",
+        "miel"
+      ]
+    },
+    {
+      "key": "Grunona",
+      "display": "Gruñona",
+      "menu_name": "La Gruñona",
+      "price": 11.3,
+      "ingredients": [
+        "Ternera",
+        "cheddar",
+        "bacon",
+        "jalapeño",
+        "salsa picante"
+      ]
+    },
+    {
+      "key": "Lilo",
+      "display": "Lilo",
+      "menu_name": "La Lilo",
+      "price": 12.5,
+      "ingredients": [
+        "Ternera",
+        "cheddar",
+        "pulled pork",
+        "bacon",
+        "salsa barbacoa"
+      ]
+    },
+    {
+      "key": "Monumental",
+      "display": "Monumental",
+      "menu_name": "La Monumental",
+      "price": 16.9,
+      "ingredients": [
+        "Pan brioche domme",
+        "hamburguesa de vaca rubia gallega madurada 30 días",
+        "queso raclette fundido",
+        "rabo de toro al vino tinto",
+        "arena de guanciale crujiente",
+        "rúcula fresca",
+        "salsa Big Ohana con pepinillo y cebolla"
+      ]
+    },
+    {
+      "key": "Mudita",
+      "display": "Mudita",
+      "menu_name": "La Mudita",
+      "price": 9.9,
+      "ingredients": [
+        "Ternera",
+        "cheddar",
+        "bacon",
+        "huevo"
+      ]
+    },
+    {
+      "key": "Mulan",
+      "display": "Mulan",
+      "menu_name": "La Mulan",
+      "price": 11.9,
+      "ingredients": [
+        "Pollo panko",
+        "salsa teriyaki",
+        "col",
+        "zanahoria",
+        "mayonesa"
+      ]
+    },
+    {
+      "key": "Ohana",
+      "display": "Ohana",
+      "menu_name": "La Ohana",
+      "price": 13.9,
+      "ingredients": [
+        "Ternera",
+        "foie",
+        "mermelada de frutos rojos",
+        "queso de cabra",
+        "cebolla caramelizada",
+        "rúcula"
+      ]
+    },
+    {
+      "key": "Sabia",
+      "display": "Sabia",
+      "menu_name": "La Sabia",
+      "price": 12.4,
+      "ingredients": [
+        "Ternera",
+        "queso de cabra",
+        "cebolla caramelizada",
+        "jamón ibérico",
+        "salsa de bacon ahumado"
+      ]
+    },
+    {
+      "key": "Stitch",
+      "display": "Stich",
+      "menu_name": "La Stich",
+      "price": 11.9,
+      "ingredients": [
+        "Ternera",
+        "cheddar",
+        "huevo frito",
+        "guacamole"
+      ]
+    },
+    {
+      "key": "Sully",
+      "display": "Sully",
+      "menu_name": "La Sully",
+      "price": 11.9,
+      "ingredients": [
+        "Cheddar",
+        "bacon"
+      ]
+    },
+    {
+      "key": "Tartufo",
+      "display": "Tartufo",
+      "menu_name": "La Tartufo",
+      "price": 12.4,
+      "ingredients": [
+        "Ternera",
+        "queso semi curado",
+        "champiñones",
+        "mayonesa trufada"
+      ]
+    },
+    {
+      "key": "Timida",
+      "display": "Tímida",
+      "menu_name": "La Tímida",
+      "price": 10.9,
+      "ingredients": [
+        "Pollo rebozado",
+        "tomate",
+        "lechuga",
+        "mayonesa"
+      ]
+    },
+    {
+      "key": "Vegana",
+      "display": "Vegana",
+      "menu_name": "La Vegana",
+      "price": 10.4,
+      "ingredients": [
+        "Hamburguesa vegana",
+        "lechuga",
+        "tomate",
+        "cebolla",
+        "pepinillo"
+      ]
+    },
+    {
+      "key": "Wazoski",
+      "display": "Wazoski",
+      "menu_name": "La Wazoski",
+      "price": 11.9,
+      "ingredients": [
+        "Cheddar",
+        "cebolla",
+        "pepinillo"
+      ]
+    }
+  ]
+}

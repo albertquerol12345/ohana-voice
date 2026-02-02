@@ -1,0 +1,36 @@
+Estado actual del sistema (Ohana Voice MVP)
+
+1) Qué está activo en vivo (frontend + backend)
+- Detección en tiempo real con Whisper + matcher cerrado.
+- Sensibilidad a voz baja: ganancia automática y gate más permisivo.
+- Aliases ampliados (especialmente Ohana/Big Ohana) para variantes de ASR.
+- Hotwords desactivados por defecto (evita sesgos y falsos positivos).
+- No hay entrenamiento automático ni aprendizaje online.
+
+2) Qué NO necesitas para usarlo
+- No hay que entrenar nada.
+- No necesitas grabar sesiones para que funcione.
+- Las herramientas de test son solo para ver métricas y no afectan al uso normal.
+
+3) Cómo usarlo (normal)
+- Abre Firefox en: http://localhost:8010
+- Habla el nombre de la hamburguesa.
+- La pantalla se actualiza cuando detecta el nombre.
+
+4) Qué aporta cada parte (resumen rápido)
+- ASR (Whisper): convierte audio a texto aproximado.
+- Matcher + aliases: transforma ese texto a la hamburguesa correcta.
+- Gate/ganancia: permite captar voz baja sin tener que vocalizar tanto.
+- Decision (margen/histéresis/cooldown): evita falsos positivos.
+
+5) Ajustes relevantes que están activos ahora mismo
+- NORMALIZE_AUDIO=1
+- TARGET_RMS=0.10
+- MAX_GAIN=5.0
+- GATE_MIN_RMS=0.006
+- GATE_FACTOR=1.6
+- HOTWORDS= (vacío)
+
+6) Si quieres comprobar con audios guardados (opcional, no necesario)
+- Replay: .venv/bin/python -m backend.tools.replay_session logs/sessions/<session>.wav
+- Score:  .venv/bin/python -m backend.tools.score_session logs/sessions/<session>.wav
