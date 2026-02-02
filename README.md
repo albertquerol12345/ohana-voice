@@ -1,6 +1,6 @@
 # Ohana Voice (Portfolio Copy)
 
-![Ohana Voice preview](assets/preview.png)
+![Ohana Voice preview](assets/preview.gif)
 
 Offline-first voice ordering MVP for a kitchen POS flow. Speech is processed locally and validated before sending to the kitchen (human-in-the-loop).
 
@@ -34,7 +34,7 @@ python3 -m http.server 8010
 Open: http://localhost:8010/?demo=1
 
 **Expected output (UI sample):**
-![Ohana Voice UI](assets/preview.png)
+![Ohana Voice UI](assets/preview.gif)
 
 ## Whisper streaming route (optional)
 ```bash

@@ -19,6 +19,9 @@ const wsUrl = `ws://${wsHost}:${wsPort}`;
 const handsfree = params.get("handsfree") !== "0";
 const debugMode = params.get("debug") === "1";
 const demoMode = params.get("demo") === "1";
+const demoKey = params.get("demoKey");
+const demoHeard = params.get("demoHeard");
+const demoState = params.get("demoState");
 const autoListen = handsfree;
 let reconnectTimer = null;
 let pendingStart = false;
@@ -295,8 +298,13 @@ micButton.addEventListener("click", () => {
   if (demoMode) {
     setConnection(true);
     listenStatus.textContent = "Demo";
-    const first = burgersByKey.values().next().value;
-    showBurger(first, "doble cheeseburger", 0.92);
+    const chosen = demoKey ? burgersByKey.get(demoKey) : burgersByKey.values().next().value;
+    showBurger(chosen, demoHeard || "doble cheeseburger", 0.92);
+    if (demoState === "listening") {
+      setListening(true);
+    } else {
+      setListening(false);
+    }
     return;
   }
   connect();
