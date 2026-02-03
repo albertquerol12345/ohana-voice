@@ -7,7 +7,7 @@ Quick start
    pip install -r backend/requirements.txt
 
 2) Download Vosk Spanish model (small)
-   # From the project root:
+   cd /home/albert/ohana_voice_mvp
    curl -L -o vosk-model-small-es-0.42.zip https://alphacephei.com/vosk/models/vosk-model-small-es-0.42.zip
    unzip -q vosk-model-small-es-0.42.zip
 
@@ -53,7 +53,7 @@ Long-mode (low cognitive load: one audio per burger)
    .venv/bin/python backend/segment_long.py
 
 3) Train templates from long-mode samples
-   .venv/bin/python backend/train_dtw.py --samples ./dtw_samples_long --skip-list ""
+   .venv/bin/python backend/train_dtw.py --samples /home/albert/ohana_voice_mvp/dtw_samples_long --skip-list ""
 
 4) Run the DTW server
    .venv/bin/python backend/dtw_server.py
@@ -63,10 +63,10 @@ Long-mode (low cognitive load: one audio per burger)
 
 2) Audit quality (recommended)
    .venv/bin/python backend/audit_samples.py
-   Review: ./dtw_audit_summary.txt
+   Review: /home/albert/ohana_voice_mvp/dtw_audit_summary.txt
 
 3) Re-record only bad samples (optional)
-   .venv/bin/python backend/record_samples.py --plan ./dtw_retake_plan.json
+   .venv/bin/python backend/record_samples.py --plan /home/albert/ohana_voice_mvp/dtw_retake_plan.json
 
 4) Train templates (auto-skips flagged samples)
    .venv/bin/python backend/train_dtw.py
@@ -76,14 +76,14 @@ Long-mode (low cognitive load: one audio per burger)
 
 KWS mode (recommended if DTW is unstable)
 1) Train KWS model (uses dtw_samples_long)
-   .venv/bin/python backend/kws_train.py --samples ./dtw_samples_long
+   .venv/bin/python backend/kws_train.py --samples /home/albert/ohana_voice_mvp/dtw_samples_long
 
 2) Run the KWS server
    .venv/bin/python backend/kws_server.py
 
 Kaldi grammar mode (open-source, no training)
 1) Ensure Vosk small model exists:
-   ./vosk-model-small-es-0.42
+   /home/albert/ohana_voice_mvp/vosk-model-small-es-0.42
 
 2) Run the Kaldi grammar server:
    .venv/bin/python backend/kaldi_server.py
@@ -96,7 +96,7 @@ Notes
 - Burger ingredients live in frontend/data/burgers.json.
 - If you place the Vosk model elsewhere, set VOSK_MODEL_PATH.
 - The large model does not support runtime grammar; use:
-  VOSK_MODEL_PATH=./vosk-model-es-0.42 VOSK_USE_GRAMMAR=0 .venv/bin/python backend/server.py
+  VOSK_MODEL_PATH=/home/albert/ohana_voice_mvp/vosk-model-es-0.42 VOSK_USE_GRAMMAR=0 .venv/bin/python backend/server.py
 - By default only phonetic aliases are used. To allow extra ASR fallbacks:
   VOSK_INCLUDE_ASR_ALIASES=1
 - If port 8000 is busy, set a different static port:
@@ -104,7 +104,7 @@ Notes
 - If you change WS port, open the UI with a query param:
   http://localhost:8010/?ws=2701
 - Detection logs are written to:
-  ./logs/detections.jsonl
+  /home/albert/ohana_voice_mvp/logs/detections.jsonl
 - Hands-free mode is on by default (no mic button). To enable manual mode:
   http://localhost:8010/?handsfree=0
 - VAD (voice activity detection) is disabled by default for low-volume speech.
@@ -130,8 +130,8 @@ Whisper streaming tuning (Route A)
 - Logs: LOG_PATH=logs/detections.jsonl
 
 DTW tuning
-- Samples live in ./dtw_samples
-- Templates live in ./backend/dtw_templates.npz
+- Samples live in /home/albert/ohana_voice_mvp/dtw_samples
+- Templates live in /home/albert/ohana_voice_mvp/backend/dtw_templates.npz
 - Adjust thresholds:
   DTW_MAX_DISTANCE=0.0 (override per-key thresholds if > 0)
   DTW_MIN_MARGIN_RATIO=0.12 (bigger = stricter)
@@ -140,4 +140,4 @@ DTW tuning
 
 TTS samples (for quick validation)
    .venv/bin/python backend/generate_tts.py
-   VOSK_MODEL_PATH=./vosk-model-es-0.42 VOSK_USE_GRAMMAR=0 .venv/bin/python backend/test_audio.py
+   VOSK_MODEL_PATH=/home/albert/ohana_voice_mvp/vosk-model-es-0.42 VOSK_USE_GRAMMAR=0 .venv/bin/python backend/test_audio.py

@@ -1,52 +1,135 @@
-# Ohana Voice (Portfolio Copy)
+# Ohana Kitchen Voice MVP
 
-![Ohana Voice preview](assets/preview.gif)
+![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
+![Vosk](https://img.shields.io/badge/ASR-Vosk%2FKaldi-green.svg)
+![Demo](https://img.shields.io/badge/demo-browser%20ready-orange.svg)
 
-Offline-first voice ordering MVP for a kitchen POS flow. Speech is processed locally and validated before sending to the kitchen (human-in-the-loop).
+**Offline-first voice ordering for QSR kitchens**
 
-## Highlights
-- Offline ASR (Vosk / Kaldi grammar mode)
-- Optional Whisper streaming route
-- Low-latency UI with confidence and partial updates
-- Designed for noisy QSR environments
+Voice-activated order entry that works in noisy environments without cloud dependencies. Human validation before sending to kitchen display.
 
-## Quick start (Vosk grammar mode)
+![Demo Preview](frontend/assets/preview.gif)
+
+---
+
+## ⚡ Quick Start (Browser Demo — No Install)
+
+**See the UI immediately** (no backend needed):
+
 ```bash
-cd OHANA_VOICE_PUBLIC
+git clone https://github.com/albertquerol12345/ohana-voice.git
+cd ohana_voice_mvp
+python -m http.server 8080 --directory frontend
+```
+
+Open: `http://localhost:8080/?demo=1`
+
+✅ Browse the 19-item catalog  
+✅ See the kitchen order flow  
+✅ No microphone setup required
+
+---
+
+## 🎯 The Problem
+
+Kitchen staff need hands-free order entry. Existing solutions:
+- ❌ Require quiet environments (cloud ASR fails with grill noise)
+- ❌ No validation step (errors go straight to kitchen)
+- ❌ Expensive monthly SaaS fees
+
+**Ohana approach:**
+- ✅ Local ASR (Vosk/Kaldi) works offline
+- ✅ Human validation before sending
+- ✅ One-time setup, zero recurring costs
+
+---
+
+## 📊 Demo Scale
+
+| Metric | Value |
+|--------|-------|
+| Catalog items | 19 (burgers, sides, drinks) |
+| ASR modes | 3 (Vosk grammar, Whisper streaming, DTW voice-trained) |
+| Offline capable | ✅ Yes |
+| Browser demo | ✅ Works without backend |
+
+---
+
+## 🚀 Full Setup (With Voice)
+
+```bash
+# 1. Install
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r backend/requirements.txt
 
-# Download Vosk Spanish model (small)
+# 2. Download Spanish model (~40MB)
 curl -L -o vosk-model-small-es-0.42.zip https://alphacephei.com/vosk/models/vosk-model-small-es-0.42.zip
 unzip -q vosk-model-small-es-0.42.zip
 
-# Run server
-.venv/bin/python backend/kaldi_server.py
+# 3. Run
+.venv/bin/python backend/server.py
 ```
-Open: http://localhost:8010/?ws=2700
 
-## UI demo (no backend)
-```bash
-cd OHANA_VOICE_PUBLIC/frontend
-python3 -m http.server 8010
+Open: `http://localhost:8000`
+
+---
+
+## 🏗️ Architecture
+
 ```
-Open: http://localhost:8010/?demo=1
-
-**Expected output (UI sample):**
-![Ohana Voice UI](assets/preview.gif)
-
-## Whisper streaming route (optional)
-```bash
-.venv/bin/python -m backend.app
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│   Voice     │  →  │    ASR      │  →  │  Validation │  →  │   Kitchen   │
+│   Input     │     │   Engine    │     │    UI       │     │   Display   │
+│  (microphone)│    │(offline)    │     │(human OK)   │     │  (orders)   │
+└─────────────┘     └─────────────┘     └─────────────┘     └─────────────┘
 ```
-Open: http://localhost:8010/?ws=2700
 
-## Repo structure (simplified)
-- `backend/` ASR server, streaming pipeline, matcher, metrics
-- `frontend/` lightweight UI (static)
-- `backend/keywords.json` command vocabulary
+**ASR Modes:**
+1. **Vosk Grammar** — Fastest, no training needed, limited vocabulary
+2. **Whisper Streaming** — Best accuracy, requires GPU/cloud
+3. **DTW Voice-trained** — Personalized to your voice, no cloud
 
-## Notes
-- Large models, logs, and training data are removed in this portfolio copy.
-- Full technical README is in `README_FULL.md`.
+---
+
+## 📁 Project Structure
+
+```
+ohana_voice_mvp/
+├── frontend/           # Static UI (HTML/CSS/JS)
+│   ├── data/
+│   │   └── burgers.json      # 19-item catalog
+│   └── assets/
+│       └── preview.gif       # Demo GIF
+├── backend/
+│   ├── server.py             # Vosk grammar mode
+│   ├── app.py                # Whisper streaming
+│   ├── dtw_server.py         # Voice-trained mode
+│   └── keywords.json         # Voice command aliases
+└── README_FULL.md            # Detailed technical docs
+```
+
+---
+
+## 🎓 Use Cases
+
+- **QSR Kitchens** — Hands-free order entry during rush
+- **Food Trucks** — No internet required
+- **Accessibility** — Voice control for POS systems
+
+---
+
+## 📚 Documentation
+
+- [DEMO.md](DEMO.md) — Step-by-step walkthrough with screenshots
+- [README_FULL.md](README_FULL.md) — All 5 ASR modes, tuning parameters, training workflows
+- [frontend/data/burgers.json](frontend/data/burgers.json) — Catalog structure
+
+---
+
+## 🛠️ Tech Stack
+
+**ASR:** Vosk/Kaldi · Whisper (faster-whisper) · DTW (dynamic time warping)  
+**Backend:** Python · FastAPI · WebSocket  
+**Frontend:** Vanilla JS · HTML5 · CSS3  
+**Audio:** WebRTC · VAD (voice activity detection)
