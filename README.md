@@ -1,20 +1,38 @@
-# Ohana Kitchen Voice MVP
+# Ohana Voice — Technical Demonstration
 
-![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
-![Vosk](https://img.shields.io/badge/ASR-Vosk%2FKaldi-green.svg)
-![Demo](https://img.shields.io/badge/demo-browser%20ready-orange.svg)
+![Architecture](https://img.shields.io/badge/Architecture-Offline%20ASR%20%2B%20HITL-blue)
+![Demo](https://img.shields.io/badge/Demo-Browser%20Mode%20Ready-orange)
+![Scale](https://img.shields.io/badge/Demo%20Scale-19%20items-orange)
 
-**Offline-first voice ordering for QSR kitchens**
+**A technical demonstration of offline voice recognition for noisy environments.**
 
-Voice-activated order entry that works in noisy environments without cloud dependencies. Human validation before sending to kitchen display.
+This is not a commercial POS system. It is a **sandbox** exploring:
+- Offline ASR (no cloud dependencies)
+- Voice activity detection in noisy environments
+- Human-in-the-loop validation before order confirmation
+- Real-time audio processing patterns
 
-![Demo Preview](frontend/assets/preview.gif)
+> **For recruiters/reviewers:** See [What to Evaluate](#what-to-evaluate) section below.
 
 ---
 
-## ⚡ Quick Start (Browser Demo — No Install)
+## 🎯 The Core Demonstration
 
-**See the UI immediately** (no backend needed):
+**Problem:** Cloud-based voice ordering fails in noisy QSR kitchens (grills, fryers, conversations).  
+**Approach:** Local ASR with constrained grammar + human validation step.  
+**Demonstration:** Browser-based UI showing the flow (voice or simulated).
+
+```
+Voice Input → VAD → ASR (Vosk) → Keyword Matching → 
+→ Validation UI → Kitchen Display
+   (offline)       (human confirms)
+```
+
+---
+
+## ⚡ Quick Start (Browser Demo)
+
+**No installation needed** — See the UI immediately:
 
 ```bash
 git clone https://github.com/albertquerol12345/ohana-voice.git
@@ -24,112 +42,177 @@ python -m http.server 8080 --directory frontend
 
 Open: `http://localhost:8080/?demo=1`
 
-✅ Browse the 19-item catalog  
-✅ See the kitchen order flow  
-✅ No microphone setup required
+### What You'll See:
+- **Menu Grid:** 19-item catalog (burgers, sides, drinks)
+- **Order Builder:** Visual feedback as items are added
+- **Validation Step:** Human confirmation before sending
+- **Kitchen Display:** Final order presentation
+
+> **Note:** The `?demo=1` flag disables microphone requirements. Click buttons to simulate voice commands.
 
 ---
 
-## 🎯 The Problem
-
-Kitchen staff need hands-free order entry. Existing solutions:
-- ❌ Require quiet environments (cloud ASR fails with grill noise)
-- ❌ No validation step (errors go straight to kitchen)
-- ❌ Expensive monthly SaaS fees
-
-**Ohana approach:**
-- ✅ Local ASR (Vosk/Kaldi) works offline
-- ✅ Human validation before sending
-- ✅ One-time setup, zero recurring costs
-
----
-
-## 📊 Demo Scale
-
-| Metric | Value |
-|--------|-------|
-| Catalog items | 19 (burgers, sides, drinks) |
-| ASR modes | 3 (Vosk grammar, Whisper streaming, DTW voice-trained) |
-| Offline capable | ✅ Yes |
-| Browser demo | ✅ Works without backend |
-
----
-
-## 🚀 Full Setup (With Voice)
+## 🎙️ Full Voice Demo (Requires Setup)
 
 ```bash
-# 1. Install
+# Setup
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r backend/requirements.txt
 
-# 2. Download Spanish model (~40MB)
-curl -L -o vosk-model-small-es-0.42.zip https://alphacephei.com/vosk/models/vosk-model-small-es-0.42.zip
+# Download Spanish ASR model (~40MB)
+curl -L -o vosk-model-small-es-0.42.zip \
+  https://alphacephei.com/vosk/models/vosk-model-small-es-0.42.zip
 unzip -q vosk-model-small-es-0.42.zip
 
-# 3. Run
+# Run backend
 .venv/bin/python backend/server.py
 ```
 
 Open: `http://localhost:8000`
 
----
-
-## 🏗️ Architecture
-
-```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   Voice     │  →  │    ASR      │  →  │  Validation │  →  │   Kitchen   │
-│   Input     │     │   Engine    │     │    UI       │     │   Display   │
-│  (microphone)│    │(offline)    │     │(human OK)   │     │  (orders)   │
-└─────────────┘     └─────────────┘     └─────────────┘     └─────────────┘
-```
-
-**ASR Modes:**
-1. **Vosk Grammar** — Fastest, no training needed, limited vocabulary
-2. **Whisper Streaming** — Best accuracy, requires GPU/cloud
-3. **DTW Voice-trained** — Personalized to your voice, no cloud
+### Voice Commands to Try:
+| Command | Result |
+|---------|--------|
+| "Doble cheese" | Adds Double Cheese Burger |
+| "Con bacon" | Adds bacon modifier |
+| "Sin cebolla" | Removes onion |
+| "Coca cola grande" | Adds Large Coke |
+| "Enviar pedido" | Opens validation modal |
 
 ---
 
-## 📁 Project Structure
+## 📸 What It Actually Looks Like
 
-```
-ohana_voice_mvp/
-├── frontend/           # Static UI (HTML/CSS/JS)
-│   ├── data/
-│   │   └── burgers.json      # 19-item catalog
-│   └── assets/
-│       └── preview.gif       # Demo GIF
-├── backend/
-│   ├── server.py             # Vosk grammar mode
-│   ├── app.py                # Whisper streaming
-│   ├── dtw_server.py         # Voice-trained mode
-│   └── keywords.json         # Voice command aliases
-└── README_FULL.md            # Detailed technical docs
-```
+### The UI Flow
+
+![UI Preview](assets/preview.png)
+*Main interface: Menu grid on left, current order on right*
+
+**Screens:**
+1. **Menu Grid** — Visual catalog with images
+2. **Voice Status** — Live feedback ("Listening...", "Detected: Doble Cheese")
+3. **Order Builder** — Current items with modifiers
+4. **Validation Modal** — Human confirms before sending
+5. **Kitchen Display** — Ticket format for kitchen staff
 
 ---
 
-## 🎓 Use Cases
+## 🔍 What to Evaluate
 
-- **QSR Kitchens** — Hands-free order entry during rush
-- **Food Trucks** — No internet required
-- **Accessibility** — Voice control for POS systems
+**If you're a technical reviewer, focus on:**
+
+| Aspect | Where to Look | What Demonstrates |
+|--------|---------------|-------------------|
+| **ASR Integration** | `backend/kaldi_server.py` | Vosk/Kaldi offline integration |
+| **Voice Detection** | `backend/vad_*.py` | Voice Activity Detection tuning |
+| **Pattern Matching** | `backend/keywords.json` | Fuzzy matching for voice commands |
+| **Real-time Audio** | `backend/audio_*.py` | WebSocket audio streaming |
+| **UI State Mgmt** | `frontend/app.js` | Vanilla JS state management |
+
+**Architecture highlights:**
+- **Grammar-constrained ASR:** Limited vocabulary = higher accuracy
+- **VAD (Voice Activity Detection):** Distinguishes speech from kitchen noise
+- **HITL Pattern:** Voice → Suggestion → Human confirms → Action
+
+**Don't evaluate:**
+- ❌ Commercial readiness (it's a prototype)
+- ❌ ASR accuracy vs cloud solutions (trade-off by design)
+- ❌ Payment integration (out of scope)
+
+---
+
+## 🏗️ Technical Architecture
+
+### ASR Modes Demonstrated
+
+1. **Vosk Grammar Mode** (default)
+   - Fast, no training needed
+   - Runtime grammar switching
+   - Best for controlled vocabularies
+
+2. **Whisper Streaming** (optional)
+   - Higher accuracy
+   - Requires GPU/cloud
+   - Fallback for complex phrases
+
+3. **DTW Voice-Trained** (optional)
+   - Personalized to speaker
+   - No cloud dependencies
+   - Requires 15min training
+
+### Key Technical Challenges Addressed
+
+1. **Noisy Environment**
+   - VAD with configurable aggressiveness
+   - Auto-gain control for low-volume speech
+   - Hysteresis to prevent false triggers
+
+2. **Offline-First**
+   - All ASR runs locally (Vosk/Kaldi)
+   - No internet required after setup
+   - Works in basements, food trucks, etc.
+
+3. **Hands-Free Operation**
+   - No push-to-talk button
+   - Continuous listening with cooldown periods
+   - Visual feedback only (no audio prompts)
+
+---
+
+## 📊 Demo Scale Reality Check
+
+| Metric | Value | Context |
+|--------|-------|---------|
+| Catalog size | 19 items | Burgers, sides, drinks, combos |
+| ASR models | 2 options | Small (~40MB) or Large (~1.4GB) |
+| Recognition | ~80-90% | Clean speech; drops in noise |
+| Latency | ~1-2s | End-to-end voice → UI update |
+
+**Limitations (by design):**
+- Limited to catalog items (no open vocabulary)
+- Single-language (Spanish)
+- Requires quiet environment for best results
+
+---
+
+## 🛠️ Stack & Patterns
+
+**Backend:**
+- Python + FastAPI
+- WebSocket for real-time audio
+- Vosk/Kaldi for offline ASR
+
+**Frontend:**
+- Vanilla JavaScript (no frameworks)
+- WebRTC for microphone access
+- CSS Grid for responsive layout
+
+**Patterns:**
+- Event-driven architecture
+- State machine for order flow
+- Command pattern for voice actions
+
+---
+
+## 💡 Why This Exists
+
+I built Ohana to demonstrate:
+1. **Offline-first architecture** — Critical for environments with poor connectivity
+2. **Real-time audio processing** — WebSocket streaming, VAD, buffering
+3. **UX for high-pressure environments** — Kitchen staff need hands-free, eyes-free operation
+4. **Trade-off analysis** — Accuracy vs latency vs cost vs privacy
+
+It's not a commercial POS. It's a **technical exploration** of voice interfaces in challenging environments.
 
 ---
 
 ## 📚 Documentation
 
-- [DEMO.md](DEMO.md) — Step-by-step walkthrough with screenshots
-- [README_FULL.md](README_FULL.md) — All 5 ASR modes, tuning parameters, training workflows
-- [frontend/data/burgers.json](frontend/data/burgers.json) — Catalog structure
+- [README_FULL.md](README_FULL.md) — Complete setup and ASR modes
+- [DEMO.md](DEMO.md) — Step-by-step walkthrough
+- `frontend/data/burgers.json` — Catalog structure
 
 ---
 
-## 🛠️ Tech Stack
-
-**ASR:** Vosk/Kaldi · Whisper (faster-whisper) · DTW (dynamic time warping)  
-**Backend:** Python · FastAPI · WebSocket  
-**Frontend:** Vanilla JS · HTML5 · CSS3  
-**Audio:** WebRTC · VAD (voice activity detection)
+*Questions about the audio processing? Open an issue or email: albert.querol.beltran@gmail.com*
