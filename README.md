@@ -8,7 +8,7 @@
 
 Voice-activated order entry that works in noisy environments without cloud dependencies. Human validation before sending to kitchen display.
 
-![Demo Preview](frontend/assets/preview.gif)
+![Demo Preview](assets/preview.gif)
 
 ---
 
@@ -18,7 +18,7 @@ Voice-activated order entry that works in noisy environments without cloud depen
 
 ```bash
 git clone https://github.com/albertquerol12345/ohana-voice.git
-cd ohana_voice_mvp
+cd ohana-voice
 python -m http.server 8080 --directory frontend
 ```
 
@@ -27,6 +27,8 @@ Open: `http://localhost:8080/?demo=1`
 ✅ Browse the 19-item catalog  
 ✅ See the kitchen order flow  
 ✅ No microphone setup required
+
+> Nota: el **demo en navegador** es solo UI. El reconocimiento de voz requiere el backend local.
 
 ---
 
@@ -48,7 +50,7 @@ Kitchen staff need hands-free order entry. Existing solutions:
 
 | Metric | Value |
 |--------|-------|
-| Catalog items | 19 (burgers, sides, drinks) |
+| Catalog items | 19 burgers (ver `frontend/data/burgers.json`) |
 | ASR modes | 3 (Vosk grammar, Whisper streaming, DTW voice-trained) |
 | Offline capable | ✅ Yes |
 | Browser demo | ✅ Works without backend |
@@ -95,12 +97,13 @@ Open: `http://localhost:8000`
 ## 📁 Project Structure
 
 ```
-ohana_voice_mvp/
+ohana-voice/
+├── assets/             # Preview GIFs
 ├── frontend/           # Static UI (HTML/CSS/JS)
 │   ├── data/
 │   │   └── burgers.json      # 19-item catalog
 │   └── assets/
-│       └── preview.gif       # Demo GIF
+│       └── (icons/ingredients)
 ├── backend/
 │   ├── server.py             # Vosk grammar mode
 │   ├── app.py                # Whisper streaming
@@ -130,6 +133,6 @@ ohana_voice_mvp/
 ## 🛠️ Tech Stack
 
 **ASR:** Vosk/Kaldi · Whisper (faster-whisper) · DTW (dynamic time warping)  
-**Backend:** Python · FastAPI · WebSocket  
+**Backend:** Python · websockets  
 **Frontend:** Vanilla JS · HTML5 · CSS3  
-**Audio:** WebRTC · VAD (voice activity detection)
+**Audio:** WebRTC (browser) · VAD (webrtcvad)
